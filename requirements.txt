@@ -1,0 +1,14 @@
+altair==4.2.0
+branca==0.5.0
+folium==0.12.1.post1
+geopandas==0.11.1
+leafmap==0.10.5
+networkx==2.8.4
+osmnx==1.2.2
+pandas==1.4.4
+Pillow==9.2.0
+plotly==5.10.0
+requests==2.28.1
+streamlit==1.12.2
+streamlit_folium==0.6.15
+streamlit_lottie==0.0.3
