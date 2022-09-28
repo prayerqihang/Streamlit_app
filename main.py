@@ -32,7 +32,7 @@ class MultiPage:
             st.sidebar.title("About")
             st.sidebar.info(
                 """
-                You can follow me on social media: [GitHub]() | [Blog](). 
+                You can follow me on social media: [GitHub](https://github.com/prayerqihang/Streamlit_app). 
                 Or contact me directly through the following way: 
                 Email - 213193391@seu.edu.cn | Phone - 13116637275
                 """

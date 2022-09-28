@@ -20,8 +20,11 @@ LIB_PATH = os.path.join(
 )
 
 # 图像文件目录
-IMAGE_PATH = os.path.join(
-    BASE_PATH, 'images'
+IMAGE_PATH_HOME = os.path.join(
+    BASE_PATH, 'images', 'home'
+)
+IMAGE_PATH_PARKING = os.path.join(
+    BASE_PATH, 'images', 'machine_learning'
 )
 
 # 样式文件路径

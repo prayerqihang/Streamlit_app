@@ -10,7 +10,7 @@ from PIL import Image
 import branca
 import folium
 
-from conf.settings import DATA_PATH_PARKING, IMAGE_PATH
+from conf.settings import DATA_PATH_PARKING, IMAGE_PATH_PARKING
 
 
 # streamlit 缓存装饰器，在首次运行函数后会对：函数的输入，函数中的外部参数，函数体，函数体中调用的函数
@@ -105,7 +105,7 @@ def network_analysis(gpkg_path):
 
         # Part 2 --- 计算道路长度，可视化
         with col1.expander('Road Length', expanded=True):
-            filepath = os.path.join(IMAGE_PATH, 'fig_length.png')
+            filepath = os.path.join(IMAGE_PATH_PARKING, 'fig_length.png')
             if not os.path.exists(filepath):
                 # 若图片不存在，则重新绘制并保存
                 ec_len = ox.plot.get_edge_colors_by_attr(graph, 'length', cmap='hot')
@@ -122,7 +122,7 @@ def network_analysis(gpkg_path):
         # Part 3 --- 计算道路中心度，可视化
         # closeness_centrality衡量节点之间的接近程度，中心度越高，距离越短
         with col2.expander('Road Centrality', expanded=True):
-            filepath = os.path.join(IMAGE_PATH, 'fig_centrality.png')
+            filepath = os.path.join(IMAGE_PATH_PARKING, 'fig_centrality.png')
             if not os.path.exists(filepath):
                 edge_centrality = nx.closeness_centrality(nx.line_graph(graph))
                 nx.set_edge_attributes(graph, edge_centrality, name='edge_centrality')
@@ -140,7 +140,7 @@ def network_analysis(gpkg_path):
         col1, col2 = st.columns((1, 1))
 
         with col1.expander('Speed', expanded=True):
-            filepath = os.path.join(IMAGE_PATH, 'fig_speed.png')
+            filepath = os.path.join(IMAGE_PATH_PARKING, 'fig_speed.png')
             if not os.path.exists(filepath):
                 graph = ox.speed.add_edge_speeds(graph)  # 添加边属性 speed_kph，默认为每条边的平均最大自由流速度
                 ec_speed = ox.plot.get_edge_colors_by_attr(graph, 'speed_kph', cmap='viridis')
@@ -155,7 +155,7 @@ def network_analysis(gpkg_path):
 
         # Part 5 --- 计算道路行驶时间，可视化
         with col2.expander('Travel Time', expanded=True):
-            filepath = os.path.join(IMAGE_PATH, 'fig_time.png')
+            filepath = os.path.join(IMAGE_PATH_PARKING, 'fig_time.png')
             if not os.path.exists(filepath):
                 graph = ox.speed.add_edge_travel_times(graph)  # 添加边属性 travel_time，由speed_kph和length得到
                 ec_time = ox.plot.get_edge_colors_by_attr(graph, 'travel_time', cmap='bone')
@@ -203,7 +203,7 @@ def plot_leafmap(dict_layer):
                 #     aliases=['Parking Code'],  # fields的别名
                 # ),  # 鼠标悬浮显示信息（存在问题，暂不清楚原因）
                 marker=folium.Marker(
-                    icon=folium.Icon(color='green', icon='car')
+                    icon=folium.Icon(icon='cloud', color='green')
                 ),
                 layer_name='parking',
                 zoom_to_layer=False,
@@ -251,7 +251,7 @@ def plot_leafmap(dict_layer):
 
 
 def app():
-    st.header('Spatial Feature Analysis')
+    st.header('Parking Occupancy Forecast——Spatial Feature Analysis')
 
     # Part 1 --- 地理数据获取
     st.write('#### :key: Geographic Data Acquisition')

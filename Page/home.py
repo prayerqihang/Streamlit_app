@@ -2,6 +2,9 @@ import streamlit as st
 import requests
 from streamlit_lottie import st_lottie
 from PIL import Image
+import os
+
+from conf.settings import STYLE_PATH, IMAGE_PATH_HOME
 
 
 # 加载页面动画
@@ -21,9 +24,8 @@ def load_css(css_file):
 
 
 def app():
-    load_css('style/home.css')  # 加载css
+    load_css(os.path.join(STYLE_PATH, 'home.css'))  # 加载css
     lottie_coding = load_lottie('https://assets2.lottiefiles.com/packages/lf20_tqjrovxh.json')  # 加载动画
-    img_test = Image.open('images/test.png')  # 加载图片
 
     # Part 1 --- 简单介绍
     with st.container():
@@ -62,28 +64,21 @@ def app():
     st.subheader('Projects Overview')
 
     with st.container():
-        st.write('#### :key: Pubic Transportation Analysis')
-        image_column, text_column = st.columns((1, 2))
-        with image_column:
-            st.image(img_test)
-        with text_column:
-            st.write(
-                '''
-                content
-                '''
-            )
-
-    with st.container():
-        st.write('#### :key: MNL')
-        image_column, text_column = st.columns((1, 2))
-        with image_column:
-            st.image(img_test)
-        with text_column:
-            st.write(
-                '''
-                content
-                '''
-            )
+        st.write('#### :key: Parking Occupancy Data')
+        row1_col1, row1_col2 = st.columns((1, 1))
+        with row1_col1:
+            st.info('Spacial Feature Analysis')
+            st.image(Image.open(os.path.join(IMAGE_PATH_HOME, 'spacial_analysis.png')))
+        with row1_col2:
+            st.info('Time Series Analysis')
+            st.image(Image.open(os.path.join(IMAGE_PATH_HOME, 'time_series_analysis.png')))
+        row2_col1, row2_col2 = st.columns((1, 1))
+        with row2_col1:
+            st.info('Spatio-temporal Correlation Analysis')
+            st.image(Image.open(os.path.join(IMAGE_PATH_HOME, 'spatio_temporal_correlation.png')))
+        with row2_col2:
+            st.info('Model Prediction')
+            st.image(Image.open(os.path.join(IMAGE_PATH_HOME, 'model_prediction.png')))
 
     # Part 4 --- 联系方式
     st.write('---')
