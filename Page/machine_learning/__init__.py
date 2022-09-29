@@ -1,6 +1,5 @@
 import streamlit as st
-
-from .parking_occupancy_forecast import data_geographic, data_parking, model_building
+from .parking_occupancy_forecast import parking_of_app
 
 
 class MultiPage:
@@ -18,19 +17,28 @@ class MultiPage:
 
     def run(self):
         st.sidebar.subheader('Machine Learning Project')
-        page = st.sidebar.radio(
-            'Go to: Parking Occupancy Forecast',
+        page = st.sidebar.selectbox(
+            'Go to:',
             self.pages,
             format_func=lambda page: page['title']
         )
+
         page['function']()
+
+        # 显示各项目补充信息
+        if page['title'] == 'Parking Occupancy Forecast':
+            st.sidebar.title('About')
+            st.sidebar.info(
+                """
+                This project is mainly made by the seuteer. If you want
+                to know more, please access [GitHub](https://github.com/seuteer)
+                """
+            )
 
 
 def app():
     sub_app = MultiPage()
 
-    sub_app.add_page('Spatial Feature Analysis', data_geographic.app)
-    sub_app.add_page('Time Series Analysis', data_parking.app)
-    sub_app.add_page('LSTM Prediction', model_building.app)
+    sub_app.add_page('Parking Occupancy Forecast', parking_of_app)
 
     sub_app.run()

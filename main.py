@@ -58,9 +58,10 @@ else:
     st.session_state.first_visit = False
 
 # 初始化全局配置
-# st.session_state.date_time = datetime.datetime.now() + datetime.timedelta(
-#     hours=8)  # Streamlit_Cloud的时区是UTC，加8小时即北京时间
-st.session_state.date_time = datetime.datetime.now().replace(microsecond=0)  # 仅用于本地运行
+# Streamlit_Cloud的时区是UTC，加8小时即北京时间
+st.session_state.date_time = datetime.datetime.now().replace(microsecond=0) + \
+                             datetime.timedelta(hours=8)
+# st.session_state.date_time = datetime.datetime.now().replace(microsecond=0)  # 仅用于本地运行
 if st.session_state.first_visit:
     st.balloons()  # 一次访问时才会放气球
 
