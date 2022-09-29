@@ -1,5 +1,6 @@
 import streamlit as st
 from .parking_occupancy_forecast import parking_of_app
+from .test import test_app
 
 
 class MultiPage:
@@ -40,5 +41,6 @@ def app():
     sub_app = MultiPage()
 
     sub_app.add_page('Parking Occupancy Forecast', parking_of_app)
+    sub_app.add_page('Test', test_app)
 
     sub_app.run()
