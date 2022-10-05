@@ -18,7 +18,7 @@ class MultiPage:
 
     def run(self):
         page = st.sidebar.radio(
-            'Go to: Parking Occupancy Forecast',
+            'Please Choose The Part You Want:',
             self.pages,
             format_func=lambda page: page['title']
         )
