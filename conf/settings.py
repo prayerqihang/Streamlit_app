@@ -13,6 +13,9 @@ DATA_PATH_PASSENGER = os.path.join(
 DATA_PATH_PARKING = os.path.join(
     BASE_PATH, 'db_file', 'machine_learning', 'parking_occupancy_data'
 )
+DATA_PATH_MEDICAL = os.path.join(
+    BASE_PATH, 'db_file', 'data_analysis', 'medical_accessibility'
+)
 
 # 自定义模块路径
 LIB_PATH = os.path.join(

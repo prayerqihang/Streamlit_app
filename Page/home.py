@@ -64,7 +64,7 @@ def app():
     st.subheader('Projects Overview')
 
     with st.container():
-        st.write('#### :key: Parking Occupancy Data')
+        st.write('#### :key: Parking Occupancy Forecast')
         row1_col1, row1_col2 = st.columns((1, 1))
         with row1_col1:
             st.info('Spacial Feature Analysis')
